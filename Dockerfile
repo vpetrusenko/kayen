@@ -1,4 +1,4 @@
-FROM buildpack-deps:stretch
+FROM rust
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
@@ -31,6 +31,6 @@ WORKDIR /usr/local/src/kayen
 
 COPY . .
 
-RUN cargo build && cargo test && cargo run
+RUN cargo build
 
-CMD ['cargo', 'build', '--release']
+CMD ['mv', 'target', '/usr/local/bin']
